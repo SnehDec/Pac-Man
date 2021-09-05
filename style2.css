@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+}
+
+body {
+  background-color: black;
+  overflow:hidden;
+  margin:0;
+}
+
+#game{
+  position:absolute;
+  height:600px;
+  width:600px;
+}
+
+
+.pellet{
+  position:relative;
+  width:10px;
+  height:10px;
+  margin-left: 18.07692307692px;
+  margin-right:18.07692307692px;
+  margin-top:16.07692307692px;
+  margin-bottom: 16.07692307692px;
+  z-index:1;
+}
+
+.hidden_pellet{
+  visibility:hidden;
+}
+
+
+.pacman{
+  position:relative;
+  width:46.15384615384615px;
+  height:46.15384615384615px;
+  z-index:1;
+}
+
+
+.ghosts{
+  position:absolute;
+  left: 553.8461538px;
+  width:46.15384615384615px;
+  z-index:1;
+}
+
+.maze {
+  position: absolute;
+}
+
+.level_heading{
+  position:absolute;
+  left:700px;
+  top:250px;
+}
+
+.lives_heading{
+  position:absolute;
+  left:700px;
+  top:200px;
+}
+
+.score_heading{
+  position:absolute;
+  left:700px;
+  top:300px;
+}
+
+.start{
+  position:absolute;
+  left:670px;
+  top:370px;
+  background-color: blue;
+  font-family: monospace;
+  font-size: 1.5rem;
+  border-radius: 10%;
+  border-color: blue;
+  height: 50px;
+  width:200px;
+}
