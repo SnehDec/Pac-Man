@@ -1,4 +1,5 @@
-// DEPTH FIRST SEARCH MAZE IMPLEMENTATION IN JAVASCRIPT BY CONOR BAILEY
+// Modified version of DEPTH FIRST SEARCH MAZE IMPLEMENTATION IN JAVASCRIPT BY CONOR BAILEY
+//to create maze in which Pac-Man and ghosts move in.
 
 // Initialize the canvas
 let maze = document.querySelector(".maze");
@@ -39,6 +40,43 @@ class Maze {
     // Set the first cell as visited
     current.visited = true;
     this.make_maze();
+
+    //The following code was added by me (Sneha) to remove walls at random from <=10 cells.
+    // This introduces more forks in paths in the maze which gives Pac-Man a better chance
+    //of escaping ghosts by taking alternate routes. Without this, Pac-Man cannot
+    //even make it past level 1.
+    let row =Math.floor(Math.random()*10 + 1)
+    //picks a random row, with the exception of the first and last row
+
+    let count=0;
+    //makes sure a maximum of 10 cells have their walls removed
+
+    let cell = Math.floor(Math.random()*10+1);
+    //picks a random column
+
+    while (count<=10){
+
+    if(this.grid[row][cell].walls.rightWall==true){
+      this.grid[row][cell].walls.rightWall = false;
+      this.grid[row][cell+1].walls.leftWall = false;
+    }
+    else if(this.grid[row][cell].walls.topWall==true){
+      this.grid[row][cell].walls.topWall=false;
+      this.grid[row-1][cell].walls.bottomWall = false;
+    }
+    else if(this.grid[row][cell].walls.leftWall==true){
+      this.grid[row][cell].walls.leftWall=false;
+      this.grid[row][cell-1].walls.rightWall=false;
+    }
+    else if (this.grid[row][cell].walls.bottomWall==true){
+      this.grid[row][cell].walls.bottomWall=false;
+      this.grid[row+1][cell].walls.topWall=false;
+    }
+
+    row=Math.floor(Math.random()*10+1);
+    count++;
+    cell= Math.floor(Math.random()*10+1);
+    }
     // Loop through the 2d grid array and call the show method for each cell instance
     for (let r = 0; r < this.rows; r++) {
       for (let c = 0; c < this.columns; c++) {
@@ -60,7 +98,7 @@ class Maze {
       this.stack.push(current);
       // This function compares the current cell to the next cell and removes the relevant walls for each cell
       current.removeWalls(current, next);
-      // Set the nect cell to the current cell
+      // Set the next cell to the current cell
       current = next;
       this.make_maze();
 
@@ -210,38 +248,6 @@ class Cell {
 }
 
 
-let mezze = new Maze(600, 13, 13);
+let mezze = new Maze(600, 13, 13); //169 cell maze created for Pac-Man game
 mezze.setup();
-mezze.draw();
-
-let row =Math.floor(Math.random()*10 + 1)
-
-count=0;
-
-let cell = Math.floor(Math.random()*10+1);
-
-while (count<=10){
-
-if(mezze.grid[row][cell].walls.rightWall==true){
-  mezze.grid[row][cell].walls.rightWall = false;
-  mezze.grid[row][cell+1].walls.leftWall = false;
-}
-else if(mezze.grid[row][cell].walls.topWall==true){
-  mezze.grid[row][cell].walls.topWall=false;
-  mezze.grid[row-1][cell].walls.bottomWall = false;
-}
-else if(mezze.grid[row][cell].walls.leftWall==true){
-  mezze.grid[row][cell].walls.leftWall=false;
-  mezze.grid[row][cell-1].walls.rightWall=false;
-}
-else if (mezze.grid[row][cell].walls.bottomWall==true){
-  mezze.grid[row][cell].walls.bottomWall=false;
-  mezze.grid[row+1][cell].walls.topWall=false;
-}
-
-row=Math.floor(Math.random()*10+1);
-count++;
-cell= Math.floor(Math.random()*10+1);
-}
-
 mezze.draw();
