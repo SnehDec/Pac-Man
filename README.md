@@ -2,7 +2,8 @@
 A modified version of the arcade game Pac-Man
 
 # The Game
-In this version of the Pac-Man game, we start with four ghosts in the first level and after every two levels, an additional ghost is added to the game. The maximum number of ghosts is 8. 
+In this version of the Pac-Man game, we start with four ghosts in the first level and after every two levels, an additional ghost is added to the game. The maximum number of ghosts is 8. Pac-Man has three lives per game.
+The maze that the ghosts and Pac-Man move around in is randomly-generated each time the page loads. So, for every new game/refresh, the maze changes.
 The code files contain detailed comments on the code itself. 
 
 # Notes
